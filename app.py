@@ -1,4 +1,5 @@
 from flask import Flask, request, send_file
+from flask_cors import CORS
 import numpy as np
 from PIL import Image
 from io import BytesIO
@@ -6,6 +7,7 @@ from tensorflow.keras.models import load_model
 import cv2
 
 app = Flask(__name__)
+CORS(app) 
 
 # Load pre-trained models
 glandModel = load_model('models/gland-segmentation.h5')
@@ -78,3 +80,5 @@ def preprocess_image(image_file):
 
 if __name__ == '__main__':
     app.run(debug=True)
+
+# .\env\Scripts\activate     for activating env 
